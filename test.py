@@ -1,24 +1,20 @@
 text = input("New string: ")
-list = [[]]
-textsp = text.split(' ')
-list.append(textsp)
+text_list = text.split(' ')
 
-main_list = [[]]
-new_list = [[]]
-for i in range(len(list)):
-    for j in range(len(list[i])):
-        main_list = list[i][j]
-        print(main_list[i][j])
-rev = -1
-for i in range(len(main_list)):
-    for j in range(len(main_list[i])):
+new_list = []
+for word in text_list:
+    new_word = ''
+    letters = [char for char in word if char.isalpha()]
+    digits = [char for char in word if char.isdigit()]
+    for char in word:
+        if char.isalpha():
+            new_word += letters.pop()
+        else:
+            new_word += digits.pop(0)
+    new_list.append(new_word)
 
-        if 'abcdefghijklmnopqrstuvwxyzABCDIFGHIJKLMNOPQRSTUVWXYZ'.find(main_list[i]) != -1:
-            new_list[i][j] = main_list[i][rev]
-            rev += -1
-        else: new_list[i][j] = main_list[i][j]
-    print(new_list)
-
+reversed_text = ' '.join(new_list)
+print(reversed_text)
 
 
 
