@@ -15,6 +15,5 @@ def rev_str_only_alf(text):
             else:
                 new_word += symbols.pop(0)
         new_list.append(new_word)
-
     reversed_text = ' '.join(new_list)
     return reversed_text
