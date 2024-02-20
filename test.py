@@ -1,19 +1,32 @@
-def rev_str_only_alf(text):
+def rev_text(text: str) -> str:
+    """ Reverse string"""
     text_list = text.split(' ')
 
     new_list = []
     for word in text_list:
-        new_word = ''
         letters = [char for char in word if char.isalpha()]
-        digits = [char for char in word if char.isdigit()]
-        symbols = [char for char in word if not char.isalpha() and not char.isdigit()]
-        for char in word:
-            if char.isalpha():
-                new_word += letters.pop()
-            elif char.isdigit():
-                new_word += digits.pop(0)
-            else:
-                new_word += symbols.pop(0)
-        new_list.append(new_word)
-    reversed_text = ' '.join(new_list)
-    return reversed_text
+        dig_and_syb = [char for char in word if not char.isalpha()]
+        new_list.append(add_sorted(word, letters, dig_and_syb))
+    text = ' '.join(new_list)
+    return text
+
+
+def add_sorted(word: str, letters: list, dig_and_syb: list) -> str:
+    """ Adding letters,digital and symbols from lists for create new sorted word. """
+    new_word = ''
+    for char in word:
+        if not char.isalpha():
+            new_word += dig_and_syb.pop(0)
+        else:
+            new_word += letters.pop()
+    return new_word
+
+
+if __name__ == '__main__':
+    cases = [
+        ('ksby', 'ybsk'),
+        ('a1bcd efg!h', 'd1cba hgf!e'),
+        (' ', ' ')
+    ]
+    for text, revers_text in cases:
+        assert rev_text(text=text) == revers_text
