@@ -18,6 +18,3 @@ def rev_str_only_alf(text):
 
     reversed_text = ' '.join(new_list)
     return reversed_text
-
-
-
